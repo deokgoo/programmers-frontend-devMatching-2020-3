@@ -52,7 +52,6 @@ body * {
 }
 
 .ImageInfo {
-    z-index: 1;
     position: fixed;
     left: 0;
     top: 0;
@@ -72,7 +71,6 @@ body * {
 }
 
 .ImageInfo .content-wrapper {
-    z-index: 2;
     position: absolute;
     left: 50%;
     top: 50%;
