@@ -4,8 +4,13 @@ class App {
   $target = null;
   data = [];
 
+  //2. $target 파라미터로 #App가 들어옴
   constructor($target) {
     this.$target = $target;
+
+    this.darkToggle = new DarkToggle({
+      $target
+    });
 
     this.searchInput = new SearchInput({
       $target,

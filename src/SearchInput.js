@@ -1,6 +1,8 @@
 const TEMPLATE = '<input type="text">';
 
 class SearchInput {
+  $searchInput = null;
+
   constructor({ $target, onSearch }) {
     const $searchInput = document.createElement("input");
     this.$searchInput = $searchInput;

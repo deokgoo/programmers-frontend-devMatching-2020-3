@@ -23,9 +23,9 @@ class SearchResult {
     this.$searchResult.innerHTML = this.data
       .map(
         cat => `
-          <div class="item">
+          <article class="item">
             <img src=${cat.url} alt=${cat.name} />
-          </div>
+          </article>
         `
       )
       .join("");
