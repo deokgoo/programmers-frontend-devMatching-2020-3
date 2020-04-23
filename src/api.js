@@ -6,5 +6,10 @@ const api = {
     return fetch(`${API_ENDPOINT}/api/cats/search?q=${keyword}`).then(res =>
       res.json()
     );
+  },
+  fetchCatInfo: keyword => {
+    return fetch(`${API_ENDPOINT}/api/cats/${keyword}`).then(res =>
+      res.json()
+    );
   }
 };

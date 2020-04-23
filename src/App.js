@@ -40,7 +40,7 @@ class App {
   }
 
   setState(nextData) {
-    console.log(this);
+    console.log('setState :', this);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }

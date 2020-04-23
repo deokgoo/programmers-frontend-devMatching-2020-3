@@ -2,7 +2,7 @@ class ImageInfo {
   $imageInfo = null;
   data = null;
 
-  constructor({ $target, data }) {
+  constructor({$target, data}) {
     const $imageInfo = document.createElement("div");
     $imageInfo.className = "ImageInfo";
     this.$imageInfo = $imageInfo;
@@ -18,25 +18,57 @@ class ImageInfo {
     this.render();
   }
 
-  render() {
-    if (this.data.visible) {
-      const { name, url, temperament, origin } = this.data.image;
+  closeModal() {
+    this.data.visible = false;
+    this.render()
+  }
 
-      console.log(this.data);
+  setCloseListener() {
+    document.querySelector("#close-modal").addEventListener('click', e => {
+      e.stopPropagation();
+      this.closeModal();
+    }, {once : true});
+    document.querySelector(".ImageInfo").addEventListener('click', e => {
+      e.stopPropagation();
+      if (e.target !== e.currentTarget) return;
+      this.closeModal();
+    });
+    window.addEventListener('keyup', e => {
+      if(e.keyCode === 27) {
+        console.log('keyboard esc');
+        this.closeModal();
+      }
+    }, {once : true});
+  }
 
-      this.$imageInfo.innerHTML = `
-        <div class="content-wrapper">
+  getCatInfo(catId) {
+     api.fetchCatInfo(catId).then(res => {
+       const {name, url, temperament, origin} = res.data;
+
+       this.$imageInfo.innerHTML = `
+        <section class="content-wrapper">
           <div class="title">
-            <span>${name}</span>
-            <div class="close">x</div>
+            <h3>${name}</h3>
+            <button class="close" id="close-modal">X</button>
           </div>
           <img src="${url}" alt="${name}"/>        
           <div class="description">
-            <div>성격: ${temperament}</div>
-            <div>태생: ${origin}</div>
+            <div>
+              <p>성격: ${temperament}</p>
+            </div>
+            <div>
+              <p>태생: ${origin}</p>
+            </div>
           </div>
-        </div>`;
-      this.$imageInfo.style.display = "block";
+        </section>`;
+       this.$imageInfo.style.display = "block";
+       this.setCloseListener(true);
+    });
+  }
+
+  render() {
+    if (this.data.visible) {
+      this.getCatInfo(this.data.image.id);
     } else {
       this.$imageInfo.style.display = "none";
     }

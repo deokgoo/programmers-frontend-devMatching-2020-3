@@ -16,9 +16,8 @@ class SearchInput {
         onSearch(e.target.value);
       }
     });
-
-    console.log("SearchInput created.", this);
   }
+
   render() {
     console.log()
   }

@@ -8,6 +8,10 @@ body {
   color: white;
 }
 
+div {
+  background-color: #000;
+}
+
 .SearchInput {
   background-color: #333333;
   color: white;
@@ -18,5 +22,15 @@ body {
   background-color: #333333;
   color: white;
   border-color: #111111;
+}
+
+.ImageInfo .content-wrapper {
+  background-color: #222222;
+  border: 1px solid #111111;
+}
+
+.ImageInfo .content-wrapper .close {
+  background-color: #000;
+  color: white;
 }
 
