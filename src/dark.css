@@ -34,3 +34,8 @@ div {
   color: white;
 }
 
+.SearchResult .loader-wrapper .loader {
+  border: 16px solid #222222; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+}
+

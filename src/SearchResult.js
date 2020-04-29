@@ -10,8 +10,6 @@ class SearchResult {
 
     this.data = initialData;
     this.onClick = onClick;
-
-    this.render();
   }
 
   setState(nextData) {
@@ -21,20 +19,28 @@ class SearchResult {
 
   render() {
     console.log('data: ', this.data);
-    this.$searchResult.innerHTML = this.data
-      .map(
-        cat => `
+    if(this.data === undefined) {
+      this.$searchResult.innerHTML = '데이터 불러오기 실패'
+    } else {
+      if(this.data.length > 0) {
+        this.$searchResult.innerHTML = this.data
+          .map(
+            cat => `
           <article class="item">
             <img src=${cat.url} alt=${cat.name} />
           </article>
         `
-      )
-      .join("");
+          )
+          .join("");
 
-    this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-      $item.addEventListener("click", () => {
-        this.onClick(this.data[index]);
-      });
-    });
+        this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
+          $item.addEventListener("click", () => {
+            this.onClick(this.data[index]);
+          });
+        });
+      } else {
+        this.$searchResult.innerHTML = '<div class="no-item">검색 결과가 없어요</div>';
+      }
+    }
   }
 }
